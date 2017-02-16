@@ -1,0 +1,310 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+\chapter{数学公式示例}
+
+\setcounter{subsubsection}{0}
+
+
+\section{单行公式}
+\newcommand{\subvec}[3][x]{\ensuremath{#1_{#2},\cdots,#1_{#3}}}
+
+
+\subsection{类型I: 使用\texttt{equation}单个公式环境}
+这种类型使用最为广泛， 可以左对齐(left aligned), 并可自动生成公式编号(和被引用). 其带星号(*)版本则去掉公式编号. Eg.(\ref{eq1})
+\begin{equation}\label{eq1}
+  x^2+y^2=1
+\end{equation}
+
+\subsection{类型II: 使用\texttt{displaymath}环境}
+这种类型可以左对齐(left aligned), 但不可自动生成公式编号(和被引用).
+\begin{displaymath}
+\mu_1\le\mu_2\le\cdots\le\mu_k.
+\end{displaymath}
+
+\subsection{类型III: 使用\$\$公式环境}
+这种类型只能居中排，可利用命令eqno手工方式加公式编号，但不能被引用.
+$$\mu_1\le\mu_2\le\cdots\le\mu_k.\eqno(xx)$$
+
+\subsection{类型IV: 使用 $\backslash[... \backslash]$}
+这种类型同上面的类似，可用于临时编绎公式.
+\[
+\mu_1\le\mu_2\le\cdots\le\mu_k.
+\]
+
+\section{多行公式}
+\normalsize
+
+\subsection{类型I: 使用\texttt{eqnarray}公式组环境}
+这种类型是\texttt{equation}的多行版本, 用于多个公式(方程组)场合. 其带星号(*)版本则去掉公式编号. 若
+要去掉其中一个公式编号, 则使用命令\verb=\nonumber=. Eg.(\ref{eq2})和Eg.(\ref{eq3})
+\begin{eqnarray}
+  x^2+y^2 &=& 1 \label{eq2}\\
+  x_2+y_2 &=& 0  \label{eq3}
+\end{eqnarray}
+
+\subsection{类型II: 使用\texttt{align}公式组环境}
+这种类型与\texttt{eqnarray}类似, 也可自动生成公式编号(和被引用), 差别在于只使用一个\&符号表示上下对齐. 它没有带星号(*)的版本.
+Eg.(\ref{eq4})和Eg.(\ref{eq5})
+\begin{align}
+  x^2+y^2 &= 1 \label{eq4}\\
+  x_2+y_2 &= 0  \label{eq5}
+\end{align}
+
+\subsection{类型III: 使用\texttt{split}公式组环境}
+这种类型实际上是将太长的单行公式分割,  并使用\&符号表示上下对齐. 它不可自动生成公式编号. 但它会与\texttt{ntheorem}冲突.
+\begin{verbatim}
+\begin{split}
+  (x-y)^2&= (x-y)(x-y)\\
+         &= x^2 +2 x y +y^2.\\
+\end{split}
+\end{verbatim}
+
+\subsection{类型IV: 使用displaystyle}
+这种类型的公式位置手工安置，可利用命令hss手工方式加贴标签. 公式当然不能深入浮动，因而不能被引用.
+这种方式对于非常复杂的多行需要对齐的公式组是一种有效的解决方式.
+
+\vskip\abovedisplayskip \hbox to\hsize{\hskip2cm
+  $\displaystyle
+y=x
+  $\hss (x.1)}
+\vskip0.5\baselineskip \hbox to\hsize{\hskip2cm
+  $\displaystyle
+z=w
+  $\hss (x.2)}
+\vskip\belowdisplayskip
+
+
+
+\subsection{类型V: 使用cases和numcases环境}
+这个和array环境一样，可以用\&表示对齐.
+不过很重要的一点是, \&之前是数学模式, \&之后是普通的文本模式，数学表达式要写在\$...\$中.
+使用numcases环境，需要在导言区 加载宏包cases:
+\verb/\usepackage{cases}/或\verb/\usepackage[subnum]{cases}/, 使用前者公式将连续编号，
+后者会在同一数字编号后添加a,b等进行编号,本文就是用这种方式编绎的.
+
+下面是四个例子.
+\[
+f(x)=\begin{cases} 1, & \mbox{If $x\ge 0$}, \\ 0,& \mbox{Otherwise,}\end{cases}
+\]
+
+\begin{numcases}{}
+a=b & if~$i>j$ \\
+c=d & if~$i\leq j$
+\end{numcases}
+
+ \begin{numcases}{|x|=}
+x, & for $x \geq 0$\\
+-x, & for $x < 0$
+\end{numcases}
+
+\begin{numcases}{}
+u_t-D_j\left(a^{ij}(x,t,u)D_i\varphi(u)\right)\nonumber\\
++b^i(t,u)D_iu+C(x,t,u)=0,&$(x,t)\in B_n\times (0,T)$  \\
+u(x,0)=u_{0,n}(x),&  $x\in B_n$   \\
+u(x,t)=e^{-\frac{n}{m}},\quad  \mid x \mid =n,& $t>0$
+\end{numcases}
+
+
+\subsection{类型VI: 使用\texttt{align}, \texttt{alignat}, \texttt{aligned}和\texttt{flalign}环境}
+它们可用来产生不同的对齐方式，都有星号版本. 现举例说明：
+\begin{itemize}
+\item[例1:] \texttt{align}: 使用单个\&(带多个编号)
+\begin{align}
+ y & =d\\
+ y & =cx+d\\
+ y_{12} & =bx^{2}+ cx+d\nonumber \\
+ y(x) & =ax^{3}+ bx^{2}+ cx+d
+ \end{align}
+\item[例2:] \texttt{align}: 使用3个\&(星号版本)
+\begin{align*}
+ y & =d & z & =1\\
+ y & =cx+d & z & =x +1\\
+ y_{12} & =bx^{2}+ cx+d & z & =x^{2}+ x+1 \\
+ y(x) & =ax^{3}+ bx^{2}+ cx+d & z & =x^{3}+ x^{2}+ x+1
+\end{align*}
+\item[例3:] \texttt{alignat}: 产生3个以上对齐(\texttt{align}产生1个或2个对齐)
+ \begin{alignat}{3}
+ i _{11} & =0.25 & i_{12} & =i_{21} & i_{13} & =i_{23}\nonumber \\
+ i _{21} & =\frac{1}{3} i_{11} & i_{22} & =0.5 i_{12}& i_{23} & =i_{31}\\
+ i _{31} & =0.33 i_{22}\quad & i_{32} & =0.15 i_{32}\quad & i_{33} & =i_{11}
+ \end{alignat}
+\item[例4:] \texttt{aligned}: 使用3个\&(仅有一个公式编号)
+\begin{equation}
+ \begin{aligned}
+ 2x+3 &= 7 & 2x+3 -3 &= 7-3 \\
+ 2x &= 4 & \frac{2x}{2} &= \frac42\\
+ x &= 2
+ \end{aligned}
+ \end{equation}
+ \item[例5:] \texttt{flalign}: 使用单个\&(居中)
+\begin{flalign}\label{eq:centered-1}
+ f(x) & = \int \frac{1}{x^2}\ , dx
+ \end{flalign}
+ \item[例6:] \texttt{flalign}: 使用2个\&(左对齐)
+\begin{flalign}\label{eq:centered-2}
+ f(x) & = \int \frac{1}{x^2}\ , dx &
+ \end{flalign}
+ \item[例7:] \texttt{flalign}: 使用3个\&(文本左对齐,公式右对齐)
+\begin{flalign*}
+ && 12(x -1) +20(y -3) +14(z -2) &= 0\\
+ \text{也即} && 6x+10 y+7z &= 50
+ \end{flalign*}
+\end{itemize}
+
+\subsection{数学公式中的字体}
+\newcommand\axy{2\ Greeks,\ \gamma\ and\ \Gamma}
+\setlength{\extrarowheight}{-2mm}
+\begin{table}[htbp]
+\centering
+{\small
+\caption{数学字体\label{table:mathfont}}
+\begin{tabular}{lll}
+命令形式   &  意义     &   结果   \\
+\toprule
+\verb/\mathit{a}/ &  math italic  & $\mathit{\axy}$\\
+\verb/\mathnormal{a}/ &  math italic  & $\mathnormal{\axy}$\\
+\verb/\mathbf{a}/ &  math bold (upright)    & $\mathbf{\axy}$\\
+\midrule
+\verb/\mathsf{a}/ &  math san serif  & $\mathsf{\axy}$\\
+\verb/\mathrm{a}/ &  math roman  & $\mathrm{\axy}$\\
+\verb/\mathtt{a}/ &  math typewriter  & $\mathtt{\axy}$\\
+\midrule
+\verb/\mathcal{a}/ &  math calligraphic  & $\mathcal{ABC\ R\ XYZ}$\\
+\verb/\mathfrak{a}/ &  math Euler Fraktur  & $\mathfrak{123\ abc\ ABC\ R\ XYZ}$\\
+\verb/\mathbb{a}/ &  math blackboard bold  & $\mathbb{ABC\ R\ XYZ}$\\
+\verb/\mathscr{a}/ &  math blackboard bold  & $\mathscr{ABC\ R\ XYZ}$\\
+\midrule
+\verb/\boldsymbol{a}/ &  math bold italic    & $\boldsymbol{\axy}$\\
+\verb/\boldsymbol{\mathcal{a}}/ &  math calligraphic  & $\boldsymbol{\mathcal{ABC\ R\ XYZ}}$\\
+\verb/\bm{a}/ &  bold math & $\bm{\axy}$\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{方程式编号}
+这里提供各种编号的打印方法。
+
+\addtocounter{equation}{1}
+\subsection{自动编号的单个的公式}
+\begin{equation}
+   \subvec [A]{ij}{lk}
+\end{equation}
+\begin{equation}
+   \subvec [A]{ij}{lk}
+\end{equation}
+\begin{equation}
+   \subvec [A]{ij}{lk}
+\end{equation}
+\subsection{自动编号的公式组:  单一数字编号}
+\begin{equation} \label{eq:2}
+\begin{split}
+y'&= dy / dx \\
+ &= f'(x)
+ \end{split}
+ \end{equation}
+\begin{equation} \label{eq:3}
+\left\{ \begin{aligned}
+         \pi &= 3.141\cdots \\
+     \sqrt{2}&=1.414\cdots
+        \end{aligned} \right.
+\end{equation}
+\subsection{自动编号的公式组:  多个数字编号}
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \subvec ij &=& \subvec ij \\
+  \subvec ij &=& \subvec ij
+\end{eqnarray}
+
+\section{公式的编号与引用}
+\subsection{公式引用的基本格式}
+公式引用之前必须先在公式环境中添加公式的标记(label):\verb+\label{eq:no}+,其中eq:no表示你给的公式编号,
+之后你就可以引用它了.对公式的引用可以采用两种方式:
+\begin{enumerate}
+\item \verb+\ref{eq:no}+:~这种方式在公式编号的左右不自动添加圆括号,若需要你手工添加，如用\verb+(\ref{eq:3})+产生上面公式的引用(\ref{eq:3}).
+\item \verb+\eqref{eq:no}+:~这种方式在公式编号的左右自动添加圆括号,如用\verb+\eqref{eq:3}+同样产
+生上面公式的引用\eqref{eq:3}.
+\end{enumerate}
+\subsection{编号形式的修改}
+article文档类使用可选项(leqno)可将公式的位置放在公式的左侧(reqno,缺省)
+
+在文档类article下, 可在导言区通过下面的命令将通篇的公式编号(1), (2), \dots, (100),
+随节进行分别编号成(1.1), (1.2), \dots, (5.10).
+\begin{verbatim}
+   \numberwithin{equation}{section}
+\end{verbatim}
+若要将公式编号排成(1-1), (1-2), \dots, (5-10)的式样, 可通过自定义命令\verb/\renewcommand/对方程计数器\verb/\theequation/进行修改:
+\begin{verbatim}
+  \renewcommand\theequation{\thesection-\arabic{equation}}
+\end{verbatim}
+
+本节主要讲解子公式编号的建立与引用方法. 
+\subsection{子公式的引用}
+\subsubsection{使用tag命令修改被引用的公式编号}
+\begin{equation}\label{E:first}
+A^{[2]} \diamond B^{[2]} \cong (A \diamond B)^{[2]}
+\end{equation}
+\begin{equation}\tag{\ref{E:first}$'$}\label{E:new}
+A^{\langle 2 \rangle} \diamond B^{\langle 2\rangle}
+\equiv (A \diamond B)^{\langle 2 \rangle}
+\end{equation}
+使用tag命令后的公式引用方法为: \verb/(\ref{E:first}$'$)/ 或 \verb/\eqref{E:new}/, 得到(\ref{E:first}$'$), \eqref{E:new}.
+这时原有方程计数器的值并不增加.
+
+\subsubsection{使用subequations数学环境(需要amsmath宏包支持)}
+\begin{subequations}\label{E-T}
+\begin{equation}\label{E-O}
+A^{[2]} \diamond B^{[2]} \cong (A \diamond B)^{[2]}
+\end{equation}
+\begin{equation}\label{E-M}
+A^{\langle 2 \rangle} \diamond B^{\langle 2\rangle}
+\equiv (A \diamond B)^{\langle 2\rangle}
+\end{equation}
+\end{subequations}
+引用: 由\verb/\eqref{E-T}/, \verb/\eqref{E-O}/, \verb/\eqref{E-M}/主公式与子公式的浮动引用:
+\eqref{E-T}, \eqref{E-O}, \eqref{E-M}.
+
+\subsubsection{使用align或gather环境(需要amsmath宏包支持)}
+更为方便的办法是用align或gather环境代替上面subequations环境中的多个equation环境.
+\begin{subequations}\label{EE}
+\begin{align}
+y&=cx+d \label{E1}\\
+y&=bx^2+cx+d \label{E2}\\
+y&=ax^3+bx^2+cx+d \label{E3}
+\end{align}
+\end{subequations}
+公式引用:\eqref{EE},\eqref{E1}, \eqref{E2},\eqref{E3}.
+
+\begin{subequations}\label{E:gp}
+\begin{gather}
+y=cx+d \label{gp1}\\
+y=bx^2+cx+d \label{gp2}\\
+yax^3+bx^2+cx+d \label{gp3}
+\end{gather}
+\end{subequations}
+%愈来愈不具体通过性.
+
+\subsubsection{使用subeqnarray数学环境(需要subeqnarray宏包支持)}
+subeqnarray宏包提供了subeqnarray和subeqnarray*数学环境.
+\begin{subeqnarray}
+\label{eqw}
+x & = & a \times b \slabel{eq-a}\\
+& = & z + t \slabel{eq-b}\\
+& = & z + t \slabel{eq-c}
+\end{subeqnarray}
+方程的整体引用与单独引用可分别通过\verb/\eqref{eqw}/, \verb/\eqref{eq-a}/,  \verb/\eqref{eq-b}/,  \verb/\eqref{eq-c}/实现:
+~\eqref{eqw}, \eqref{eq-a}, ~\eqref{eq-b},~\eqref{eq-c}.
+
+%subeqn 也可以！！
+
+\subsubsection{使用subnumcases设定多行分支公式的编号(需要cases宏包支持)}
+\begin{subnumcases}{\label{WW}|x|=}
+x, & for  $x\geq 0$ \label{W-a} \\
+-x, & for  $x<0$ \label{W-b}
+\end{subnumcases}
+比较: 使用subnumcases数学环境可产生三个可浮动引用的公式编号, 一个主编号, 二个子编号, 而普通的cases环境在equation环境中仅产生一个
+可浮动引用的公式编号, cases宏包中的numcases数学环境可产生二个连续的公式编号.
+
+上面公式引用: \verb/\eqref{WW}, \eqref{W-a}, \eqref{W-b}/后的结果为
+\eqref{WW}, \eqref{W-a}, \eqref{W-b}.
+
+

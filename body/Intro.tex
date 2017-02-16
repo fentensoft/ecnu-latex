@@ -1,0 +1,32 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+
+\defaultfont
+
+
+\newsavebox{\AphorismAuthor}
+\newenvironment{Aphorism}[1]
+{\vspace{0.5cm}\begin{sloppypar} \slshape
+\sbox{\AphorismAuthor}{#1}
+\begin{quote}\small\itshape }
+{\\ \hspace*{\fill}------\hspace{0.2cm} \usebox{\AphorismAuthor}
+\end{quote}
+\end{sloppypar}\vspace{0.5cm}}
+
+
+\chapter{引言}
+\label{chap1}
+\begin{Aphorism}{庄东辰}
+在财富构成的五要素中, 健康是壹, 其余的东西都是零, 只有壹存在时, 零的增加才有意义,
+如果哪一天你的壹已不存在了, 你所拥有的很多零就会变成真正的零.
+\end{Aphorism}
+\begin{Aphorism}{ Tang Yincai. 2003.}
+To help those who need the help of you will in return better your life!
+\end{Aphorism}
+\begin{Aphorism}{Wuyingnian. 2002.10}
+Stop using Microsoft Word immediately!
+\end{Aphorism}
+\begin{Aphorism}{Albert Einstein}
+The formulation of a problem is often more essential than its solution which may be merely a matter
+of mathematical or experimental skill.
+\end{Aphorism}

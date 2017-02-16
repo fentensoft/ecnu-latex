@@ -1,0 +1,180 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+\chapter{表格样本}
+\section{各种表格实例}
+\subsection{无线表格,小数点对齐}
+\tabbingsep=0pt
+\begin{tabbing}
+\heiti 行星\hspace{10mm}\=\heiti 赤道半径 km\hspace{10mm}
+  \=\heiti 公转周期 d\\
+\pushtabs
+水星\hspace{20mm} \=  2\'.439\hspace{18mm}
+\= 87\'.9\\
+金星 \>      6\'.1  \> 224\'.682\\
+地球 \> 6378\'.14 \> 365\'.25
+\poptabs
+\end{tabbing}
+\subsection{固定列宽和自动伸缩列宽的三线表}
+% 使用宏包booktabs---三线表
+%%%%% ===== 固定列宽和自动伸缩列宽表格 ===========================================
+% 修改\\, 否则必须用\tabularnewline代替\\
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\begin{table}[htbp]
+  \centering\caption{\label{table:tab9}2000
+           和~2004 年中国制造业产品的出口份额}
+  \begin{tabular}{l*{2}{R{2cm}}}
+  \toprule
+    & 2000 & 2004 \\
+  \midrule
+    钢铁                  &  3.1 &  5.2 \\
+    化学制品              &  2.1 &  2.7 \\
+    办公设备及电信设备    &  4.5 & 15.2 \\
+    汽车产品              &  0.3 &  0.7 \\
+    纺织品                & 10.4 & 17.2 \\
+    服装                  & 18.3 & 24.0 \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\subsection{跨页长表格: 使用 \texttt{longtable}宏包}
+ \renewcommand{\arraystretch}{0.8}
+\begin{longtable}{p{3cm}|p{8cm}}
+\caption{统计分析中常用的函数与作用\label{ltab-1}}\\
+ \toprule
+ \rowcolor[gray]{.9}
+统计函数 & 作用\\
+ \midrule
+$\max(x)$ &  返回向量x中最大的元素\\
+$\min(x)$ & 返回向量x中最小的元素\\
+$\texttt{which.max}(x)$ & 返回向量x中最大元素的下标\\
+$\texttt{which.min}(x)$ & 返回向量x中最小元素的下标\\
+$\texttt{mean}(x)$ & 计算样本(向量)x的均值\\
+$\texttt{median}(x)$ & 计算样本(向量)x的中位数\\
+$\texttt{mad}(x)$ & 计算中位绝对离差\\
+$\texttt{var}(x)$ &  计算样本(向量)x的方差\\
+$\texttt{sd}(x)$ & 计算向量x的标准差\\
+$\texttt{range}(x)$ & 返回长度为2的向量: $\texttt{c}(\min(x),\max(x))$\\
+$\texttt{IQR}(x)$ & 计算样本的四分位数极差\\
+$\texttt{quantile}(x)$ & 计算样本常用的分位数\\
+$\texttt{summary}(x)$ & 计算常用的描述性统计量(最小、最大、平均值、中位数和四分位数)\\
+$\cdots$ & $\cdots$\\
+  \bottomrule
+\end{longtable}
+
+
+\subsection{单元格合并}
+\renewcommand{\multirowsetup}{\centering}
+\begin{table}[htbp]
+\centering
+\caption{单元格合并}\label{merge}
+\begin{tabular}{c|r|r}\hline
+\multirow{3}[2]{20mm}{行星} & \multicolumn{2}{p{40mm}}%
+{\centering 与太阳的距离 \\ (million km)}
+\bigstrut[t] \\ \cline{2-3}
+& \multicolumn{1}{c}{最远点}
+& \multicolumn{1}{c}{最近点}
+\bigstrut[t] \\ \hline
+天王星 & 3011.0 & 2740.0 \bigstrut[t] \\
+金星   & 109.0  & 107.6 \\
+地球   & 152.6  & 147.4 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{带注释的表格: 使用threeparttable}
+
+\begin{table}[h]
+  \caption{2006-2007$^a$\tnote{}赛季科比布莱恩特投篮命中率的后验特征量
+  \label{table:tab8}}
+  \centering\small
+\begin{threeparttable}[b]
+\begin{tabular}{lccc}
+\toprule
+后验 & & 参数 &\\
+\cline{2-4}
+特征量 & 对数成败优势比$(\theta)$ & 成败优势比$(o)$ & 成功概率$(\pi)$\\
+\midrule
+均值 & -0.112 & 0.896 & 0.472\\
+中位数 & -0.109 & 0.897 & 0.473\\
+标准差 & 0.072 & 0.065 & 0.018\\
+$Q_{2.5}$\tnote{b} & -0.261 & 0.770 & 0.435\\
+$Q_{97.5}$ & 0.026 & 1.026 & 0.507\\
+\bottomrule
+\end{tabular}
+{\tiny 说明:
+\begin{tablenotes}
+\item[a] 随机游动算法, 剔除期B=500次迭代; 被保留迭代次数$T'=2000$.
+\item[b] $Q_{p}$表示分布的$p$分位数.
+\end{tablenotes}}
+\end{threeparttable}
+\end{table}
+
+
+%\section{表格自动编号}
+%%\iffalse%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\alphtab %产生形如 4-a,4-b 的编号
+%\begin{table}[htbp]
+%\begin{minipage}[htbp]{0.3\linewidth}
+%  \centering
+%  \caption{表格}\label{chap6:biaoge2}
+%  \begin{tabular}{|c|c|c|}
+%    \hline
+%    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+%    123 & 4 & 5 \\
+%    \hline
+%    67 & 890 & 13 \\
+%    \hline
+%  \end{tabular}
+%\end{minipage}
+%\begin{minipage}[htbp]{0.3\linewidth}
+%  \centering
+%  \caption{表格}\label{chap6:biaoge3}
+%  \begin{tabular}{|c|c|c|}
+%    \hline
+%    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+%    123 & 4 & 5 \\
+%    \hline
+%    67 & 890 & 13 \\
+%    \hline
+%  \end{tabular}
+%\end{minipage}
+%\begin{minipage}[htbp]{0.3\linewidth}
+%    \centering
+%  \caption{表格}\label{chap6:biaoge4}
+%  \begin{tabular}{|c|c|c|}
+%    \hline
+%    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+%    123 & 4 & 5 \\
+%    \hline
+%    67 & 890 & 13 \\
+%    \hline
+%  \end{tabular}
+%\end{minipage}
+%\end{table}
+%\resettab %恢复形如 4,5 的编号
+%
+%产生形如 4-a,4-b 的编号.
+%
+%\newpage
+%\begin{table}[h]
+%  \centering
+%  \caption{表格}\label{chap6:biaoge1}
+%  \begin{tabular}{|c|c|c|}
+%    \hline
+%    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+%    123 & 4 & 5 \\
+%    \hline
+%    67 & 890 & 13 \\
+%    \hline
+%  \end{tabular}
+%\end{table}
+%
+%恢复原来的表格编号.
+
+
+%\fi%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

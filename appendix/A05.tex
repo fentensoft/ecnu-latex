@@ -1,0 +1,47 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     上海师范大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.00
+%   Last Update: 2003-09-12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     华东师范大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.65
+%   Last Update: 2005-05-10
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002-2005  by  Yincai Tang (tangyc8866)       (tangyc8866@hotmail.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defaultfont
+
+\chapter{相关数学公式和证明}
+加油! 终于到最后一个部分了!
+\section{附录中的图形、表格、公式}
+在附录出现之前添加下面的命令
+\begin{verbatim}
+%--------------定义附录中的图、表、公式的编号格式 --------------%
+\renewcommand{\thetable}{\Alph{chapter}-\arabic{table}}
+\renewcommand{\theequation}{\Alph{chapter}-\arabic{equation}}
+\renewcommand{\thefigure}{\Alph{chapter}-\arabic{figure}}
+\renewcommand{\chaptername}{附录\Alph{chapter}}
+\renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+%--------------------%%%%%%%%%%%%%%%%-----------------------%
+\end{verbatim}
+就可实现公式表格和图形的重新编号及引用.
+
+例如附录中的公式(\ref{equ:Call})和(\ref{equ:Put})分别为:
+\begin{equation}\label{equ:Call}
+  c=S_0N(d_1)-X e^{-r T}N(d_2)
+\end{equation}
+和
+\begin{equation}\label{equ:Put}
+  p=X e^{-r T}N(-d_2)-S_0N(-d_1),
+\end{equation}
+

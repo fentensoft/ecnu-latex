@@ -1,0 +1,44 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+\chapter{关于参考文献}
+
+其中~chinesebst~是清泉自己所生成的参考文献风格,比较符合中国人的习惯。
+\section{引用格式的修改1}
+
+第一行在引用处数字两边加方框
+
+第二行去除参考文献里数字两边的方框
+
+\begin{verbatim}
+\makeatletter
+\def\@cite#1{\mbox{$\m@th^{\hbox{\@ove@rcfont[#1]}}$}}
+\renewcommand\@biblabel[1]{#1}
+\makeatother
+\end{verbatim}
+\section{引用格式的修改2}
+\subsection*{增加~$\backslash$ucite~命令使显示的引用为上标形式}
+使用下面的一种定义方法：
+\begin{verbatim}
+\newcommand{\ucite}[1]{$^{\mbox{\scriptsize \cite{#1}}}$}
+\end{verbatim}
+\begin{verbatim}
+\newcommand{\ucite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\end{verbatim}
+\section{引用示例}
+一般引用 \verb"\cite{Wang2}"
+产生如：\cite{Wang2}. 包含正文中没有引用的文献可以使用\verb/\nocite{Xiedy1997}/产生~\nocite{Xiedy1997}.
+
+上标引用 \verb"\ucite{Wang1}"，产生如：\ucite{Wang1}
+
+多个连续引用
+
+\verb"\cite{CTug,Sangdy,Wang2,net1,net2,net3}"，
+
+产生如：\cite{CTug,Sangdy,Wang2,net1,net2,net3}.
+
+
+多个上标连续引用
+
+\verb"\ucite{CTug,Sangdy,Wang2,net1,net2,net3}"，
+
+产生如：\ucite{CTug,Sangdy,Wang2,net1,net2,net3}.

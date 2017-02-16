@@ -1,0 +1,153 @@
+%!TEX TS-program = xelatex  
+%!TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+%   LaTeX File for Doctor (Master) Thesis of Shanghai Normal University     %
+%   XeLaTeX              华东师范大学博士（硕士）论文模板                         %
+%   Based on  Wang Tianshu's Template for XJTU (Version: 1.65)and           %
+%         and Wu Yingnian's Template for Ncepubj University (LaTeXBook2.02).%
+%                                                                           %
+%   Last Update: 2014-10-10                                                 %
+%   Tang Yincai, e-mail: yctang@stat.ecnu.edu.cn                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 此模板在ctex2.9版本上测试通过, 请尽可能使用此版本
+% 下载地址: http://www.ctex.org
+% 此版本同样适合于Mac OS X系统的MacTeX, 这是此版更新的主要目的
+% 下载地址: http://tug.org/mactex/
+
+% 编译方式:    XeLaTeX 
+
+\documentclass[12pt,openany,a4paper,twoside,UTF8]{ctexbook}
+\usepackage{hyperref}
+\hypersetup{%
+%  dvipdfmx,% 设定要使用的 driver 为 dvipdfmx
+  unicode={true},% 使用 unicode 来编码 PDF 字符串
+  pdfstartview={FitH},% 文档初始视图为匹配宽度
+  bookmarksnumbered={true},% 书签附上章节编号
+  bookmarksopen={true},% 展开书签
+  pdfborder={0 0 0},% 链接无框
+  citecolor=blue,
+  linkcolor=blue, % blue
+  anchorcolor=green,
+  urlcolor=blue,
+  colorlinks=true,     %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
+  pdfborder=000        %注释掉此项则交叉引用为彩色边框
+  %pdfstartview=FitH,
+  %pdfpagemode=FullScreen % 实现打开后全屏
+}
+%============================ 引用的宏包 ==================================%
+\input{setup/ECNU_pks.tex}
+
+%\includeonly{body/intro}
+\includeonly{preface/notation,body/intro,body/section,body/lists,body/table,body/graphs,body/equation,body/theorem,body/refes,body/conclud}
+
+%\includeonly{body/intro,body/section,body/lists,body/table,body/graphs,body/equation,body/theorem,body/fonts,body/refes,body/conclud}
+
+\pagestyle{fancy}
+\setlength{\headheight}{20pt}
+\hbadness=10000
+\tolerance=10000
+
+\begin{document}
+\graphicspath{{figures/}}   %定义所有的eps文件在 figures 子目录下
+
+%=========================== 文本格式定义 =================================%
+\input{setup/format.tex}
+
+
+%============================== 封面 ======================================%
+\renewcommand{\baselinestretch}{1.6}    %\baselineskip 的倍数，两者相乘为行间距。
+\fontsize{14.75pt}{12pt}\selectfont     %\fontsize{size}{skip}skip相当于\baselineskip
+
+%============================= 导言部分 ===================================%
+\frontmatter        %导言部分页码自动为罗马数字
+\sloppy             %放松拆行的限制解决中英文混排的断行问题，会加入间距，但
+                    %不会影响断行
+\input{preface/cover}       %封面 (含使用授权, 中文摘要, 英文摘要)
+
+\makecover
+
+%%目录
+%\renewcommand{\baselinestretch}{1.5}
+%\fontsize{12pt}{12pt}\selectfont
+
+
+%符号对照表
+\include{preface/notation}
+
+%=============================== 正文部分 ================================%
+\mainmatter %进入正文页码自动变为阿拉伯数字章节计数器启动
+% 对应于小四的标准字号是 12pt
+
+%设置是正文各章使用的标准字体与行距
+\renewcommand{\baselinestretch}{1.2}
+\fontsize{11pt}{12pt}\selectfont
+
+%正文章节 input不重新起一页,include重起一页
+\setcounter{page}{1}
+
+\include{body/intro}
+\include{body/section}
+\include{body/lists}
+\include{body/table}
+\include{body/graphs}
+\include{body/equation}
+\include{body/theorem}
+%\include{body/fonts}
+%------公式，参考文献的标签显示在页边，在论文修改时可以使用------
+%\include{body/labelname}
+
+\include{body/refes}
+
+%建立索引的例子，需要在运行LaTeX（PDFLaTeX）后，运行 MakeIndex
+%\include{body/index}
+
+
+%结论
+\include{body/conclud}
+
+%附录
+%----------- 定义附录中的标题、图形、表格、公式的编号格式 -------------------%
+\begin{appendix}
+    \renewcommand{\chaptername}{附录 \Alph{chapter}}
+    \renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+    \renewcommand{\thesubsection}{\Alph{chapter}.\arabic{section}.\arabic{subsection}}
+    \renewcommand{\thesubsubsection}{\arabic{subsubsection}.}
+    \renewcommand{\thetable}{\Alph{chapter}-\arabic{table}}
+    \renewcommand{\theequation}{\Alph{chapter}-\arabic{equation}}
+    \renewcommand{\thefigure}{\Alph{chapter}-\arabic{figure}}
+%   \input{appendix/A01}
+%   \input{appendix/A03}
+   \input{appendix/A05}
+\end{appendix}
+
+
+\backmatter %结束章节自动编号
+
+%其中chinesebst是我自己生成的参考文献风格,比较符合中国人的习惯
+%参考文献
+%\bibliographystyle{cnbst}
+%\phantomsection
+%\bibliography{reference/reference,reference/chinese,reference/english}
+%\bibliography{reference/ref}
+
+\addcontentsline{toc}{chapter}{参考文献}
+\input{reference/refs}
+
+
+%索引
+\newpage
+\printindex %该命令可以放到想要出现索引列表的地方
+\addcontentsline{toc}{chapter}{索\ 引}
+
+%致谢
+\input{appendix/thanks}
+
+%发表的文章列表
+\input{appendix/pubs}
+
+\clearpage
+\end{document}
+
+%%%%%%%%%%%%%%%%%% End of the file  %%%%%%%%%%%%%%%%%%%%%%%%

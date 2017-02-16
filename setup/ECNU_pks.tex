@@ -1,0 +1,91 @@
+%!TEX TS-program = xelatex  
+%!TEX encoding = UTF-8 Unicode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   加载必要的宏包                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xltxtra}
+\setmainfont[BoldFont=黑体]{宋体}
+
+\usepackage{amsmath,amsthm,amssymb,latexsym,xcolor}   % 使用AMS数学公式符号字体定理,页眉,扩展的color
+\newcommand\hmmax{0} % default 3
+\newcommand\bmmax{0} % default 4
+\usepackage{bm}                                                % 希腊字母黑体显示
+\usepackage{epsfig,graphicx,picins,picinpar,subfigure,rotating}                  % 使用图形
+\usepackage{fancybox,fancyvrb,shortvrb,fancyhdr}                                     % 支持抄录 --- 仅用于生成源代码
+\usepackage{cite}  % natbib不能再用了：\usepackage[numbers,sort&compress]{natbib}
+% %\usepackage{undertilde}
+\usepackage{booktabs}      % 让你的表格中使用不同粗细的横线来划分行
+
+\usepackage{flafter}            % 因为图形可浮动到当前页的顶部，所以它可能会出现
+                                % 在它所在文本的前面. 要防止这种情况，可使用 flafter
+                                % 宏包
+\usepackage[below]{placeins}    %浮动图形控制宏包
+                                %允许上一个section的浮动图形出现在下一个
+                                %section的开始部分该宏包提供处理浮动对象
+                                %的 \FloatBarrier 命令，使所有未处理的浮动
+                                %图形立即被处理
+\usepackage{array,tabularx,longtable,booktabs,threeparttable,colortbl,multirow,bigstrut}
+\usepackage{dcolumn}            % 让表格中将小数点对齐
+                                % 或 \hline\hline,当然在和垂直线的交叉处会有所不同。
+%---%\usepackage{slashbox}           % 可在表格的单元格中画上一斜线。
+
+
+%============================版面控制宏包=================================%
+% 页边距：上:3.0cm，下：2.0cm，左：2.8cm，右：2.2cm，页眉：2.2cm，页脚1.5cm；
+\usepackage[top=1.8cm,bottom=2cm,left=2.8cm,right=2.2cm,includehead,includefoot]{geometry}
+
+
+%============================页眉页脚控制=================================%
+\usepackage[symbol,perpage]{footmisc}  % 脚注控制可使得每页的脚注编码重新复位，
+                                       % 但可能导致脚注的链接不正确
+                                       % 注意大小写
+% %\usepackage{pageno}                    % 章首页的页眉处理, 可以改为自己想要的形式
+
+%======================== 数学公式相关宏包 ===============================%
+\usepackage{mathtools}
+\usepackage{mathrsfs}               % 不同于\mathcal or \mathfrak 之类的英文花体字体
+\usepackage{subeqnarray}            %多个子方程(1-1a)(1-1b)
+%\iffalse 以下是一个例子
+%\begin{subeqnarray}
+%\label{eqw} \slabel{eq0}
+% x & = & a \times b \\
+%\slabel{eq1}
+% & = & z + t\\
+%\slabel{eq2}
+% & = & z + t
+%\end{subeqnarray}
+%\fi
+
+%=============================标题与列表宏包=============================%
+%\usepackage[sf]{titlesec}           % 控制标题的宏包,配合命令在后面,
+                                    % 将cjk+miktex+scrbook+gb.cap下的章的标题号,
+                                    % 比如~``第二章 ＸＸＸ''位置于中心
+\usepackage{enumerate}              % 改变列表标号样式宏包 其后可接选项[a,A,i,I,1]
+\usepackage{caption2}               % 浮动图形和表格标题样式,可选项为
+                                    % [scriptsize,footnotesize,centerlast]
+\usepackage{setspace}               % 图形和表格的标题如果是多行，行距比较大,可以加宏包
+
+%\usepackage{[small,compact]{titlesec}
+
+%=========================== 特殊文本元素宏包 ==============================%
+\usepackage{nicefrac}                % 在正文文本中排版分式时，可以用它来得到较好的排版效果。
+\usepackage{units}                   % 基于 nicefrac 宏包，提供对计量单位比较美观的排版效果。
+%\usepackage{titletoc}                % 控制目录的宏包
+\usepackage{listings}                % 源代码宏包
+\usepackage{makeidx}                 % 建立索引宏包
+\makeindex
+
+% ---------生成有书签的pdf及其开关
+%\def\a{true}
+%\ifx\a\useyap
+%\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
+%\fi
+
+
+%------公式，参考文献的标签显示在页边，在论文修改时可以使用------
+%---%\usepackage{labname}               % 使用草稿专用宏包
+%\usepackage[amsmath]{labelname}
+
+\usepackage[subnum]{cases}           % 公式环境cases
+%\usepackage{cases}

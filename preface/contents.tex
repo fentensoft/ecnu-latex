@@ -1,0 +1,33 @@
+% !Mode:: "TeX:UTF-8"
+% UTF-8 编辑器
+
+%-------目录------------------------
+\thispagestyle{empty} %取消当前页眉
+%\setcounter{page}{1}
+
+%目录中的点间距太大，改变 \@dotsep 的值可以减小
+\makeatletter
+    \renewcommand{\@dotsep}{0.8}
+\makeatother
+
+\newcommand{\loflabel}{图}
+\newcommand{\lotlabel}{表}
+
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+% 插图目录
+\renewcommand{\numberline}[1]{\loflabel~#1\hspace*{1em}}
+\listoffigures
+
+% 表格目录
+\renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}
+\listoftables
+
+%\listoffigures %显示所有插图目录
+%\listoftables %显示所有表格目录
+%显示所有定理类目录
+%\listtheorems{definition}
+%\listtheorems{example}
+%\listtheorems{theorem}
