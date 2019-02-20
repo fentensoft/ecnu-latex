@@ -11,6 +11,9 @@ Maintainer:
 
 Complier:  XeLaTeX
 
+Compile command: `latexmk -xelatex main.tex`
+
 Tested on:
 
 * [X] TexLive 2016 Linux 64-bit version
+* [X] TexLive 2017 Linux 64-bit version
